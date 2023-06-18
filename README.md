@@ -1,0 +1,1 @@
+# spring-boot-3-hibernate-jpa-advance-mappings
