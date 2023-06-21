@@ -29,7 +29,7 @@ public class InstructorDetail {
     private String hobby;
 
     //Added the reference variable of instructorDetail in Instructor Entity Class
-    @OneToOne(mappedBy="instructorDetail",cascade = CascadeType.ALL)
+    @OneToOne(mappedBy="instructorDetail",cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
     private Instructor instructor;
 
     public InstructorDetail() {
