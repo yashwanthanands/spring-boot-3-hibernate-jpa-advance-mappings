@@ -10,6 +10,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -110,5 +111,15 @@ public class Instructor {
 
     public void setCourses(List<Course> courses) {
         this.courses = courses;
+    }
+
+    //add convenience method for bidirectional relationship
+    public void add(Course tempCourse) {
+        if (courses == null) {
+            courses= new ArrayList<>();
+        }
+
+        courses.add(tempCourse);
+        tempCourse.setInstructor(this);
     }
 }
