@@ -7,8 +7,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import java.util.List;
 
 /**
  * @author yashwanthanands
@@ -36,6 +38,10 @@ public class Instructor {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "instructor_detail_id")
     private InstructorDetail instructorDetail;
+
+    @OneToMany(mappedBy = "instructor", cascade = {CascadeType.DETACH,CascadeType.MERGE,
+            CascadeType.PERSIST,CascadeType.REFRESH}) // mappedBy value is referred to Instructor property in Course class
+    private List<Course> courses;
 
     public Instructor() {
 
@@ -98,5 +104,11 @@ public class Instructor {
                 '}';
     }
 
+    public List<Course> getCourses() {
+        return courses;
+    }
 
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
 }
