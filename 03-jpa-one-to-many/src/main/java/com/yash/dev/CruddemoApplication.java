@@ -1,6 +1,7 @@
 package com.yash.dev;
 
 import com.yash.dev.dao.AppDAO;
+import com.yash.dev.entity.Course;
 import com.yash.dev.entity.Instructor;
 import com.yash.dev.entity.InstructorDetail;
 import org.springframework.boot.CommandLineRunner;
@@ -22,8 +23,28 @@ public class CruddemoApplication {
 			//findInstructor(appDAO);
 			//deleteInstructor(appDAO);
 			//findInstructorDetail(appDAO);
-			deleteInstructorDetail(appDAO);
+			//deleteInstructorDetail(appDAO);
+			createInstructorWithCourses(appDAO);
 		};
+	}
+
+	private void createInstructorWithCourses(AppDAO appDAO) {
+		Instructor tempInstructor = new Instructor("Chad","Darby","chad@gmail.com");
+		InstructorDetail tempInstructorDetail=new InstructorDetail("http://www.yash.com/chad",
+				"Luv 2 Code!!!");
+		tempInstructor.setInstructorDetail(tempInstructorDetail);
+
+		Course tempCourse1=new Course("Java");
+		Course tempCourse2=new Course("Spring");
+		Course tempCourse3=new Course("Microservices");
+
+		tempInstructor.add(tempCourse1);
+		tempInstructor.add(tempCourse2);
+		tempInstructor.add(tempCourse3);
+
+		System.out.println("Saving the instructor with details and courses "+tempInstructor);
+		appDAO.save(tempInstructor);
+		System.out.println("Saved successfully");
 	}
 
 	private void deleteInstructorDetail(AppDAO appDAO) {
