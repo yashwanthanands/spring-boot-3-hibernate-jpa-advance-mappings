@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
  */
 
 @Entity
-@Table(name="instructor_details")
+@Table(name="instructor_detail")
 public class InstructorDetail {
 
     @Id
@@ -20,7 +20,7 @@ public class InstructorDetail {
     @Column(name="id")
     private int id;
 
-    @Column(name="youtubeChannel")
+    @Column(name="youtube_channel")
     private String youtubeChannel;
 
     @Column(name="hobby")
