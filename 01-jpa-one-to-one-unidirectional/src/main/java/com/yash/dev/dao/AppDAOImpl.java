@@ -12,8 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class AppDAOImpl implements AppDAO{
-
-
     private EntityManager entityManager;
 
     public AppDAOImpl(EntityManager enMgr) {
@@ -24,5 +22,11 @@ public class AppDAOImpl implements AppDAO{
     @Transactional
     public void save(Instructor theInstructor) {
         entityManager.persist(theInstructor);
+    }
+
+    @Override
+    public Instructor findInstructorById(int theId) {
+
+        return entityManager.find(Instructor.class,theId);
     }
 }
