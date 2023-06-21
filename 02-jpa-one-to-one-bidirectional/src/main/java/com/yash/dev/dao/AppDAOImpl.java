@@ -1,6 +1,7 @@
 package com.yash.dev.dao;
 
 import com.yash.dev.entity.Instructor;
+import com.yash.dev.entity.InstructorDetail;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import org.springframework.stereotype.Service;
@@ -35,5 +36,11 @@ public class AppDAOImpl implements AppDAO{
     public void deleteInstructorById(int theId) {
         Instructor tempInstructor = entityManager.find(Instructor.class, theId);
         entityManager.remove(tempInstructor);
+    }
+
+    @Override
+    public InstructorDetail findInstructorDetailById(int theId) {
+        InstructorDetail tempInstructorDetail = entityManager.find(InstructorDetail.class, theId);
+        entityManager.remove(tempInstructorDetail);
     }
 }
