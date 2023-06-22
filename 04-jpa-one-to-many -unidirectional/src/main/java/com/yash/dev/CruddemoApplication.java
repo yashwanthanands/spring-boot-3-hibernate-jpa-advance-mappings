@@ -22,8 +22,19 @@ public class CruddemoApplication {
 	public CommandLineRunner commandLineRunner(AppDAO appDAO) {
 		return runner -> {
 			System.out.println(" Spring Boot One to Many Unidirectional Implementation");
-			createCourseAndReviews(appDAO);
+			//createCourseAndReviews(appDAO);
+			retrieveCourseWithReviews(appDAO);
 		};
+	}
+
+	private void retrieveCourseWithReviews(AppDAO appDAO) {
+		int theCourseId=10;
+		Course course =appDAO.findCourseAndReviewsByCourseId(theCourseId);
+
+		System.out.println(" Course Details "+course);
+		System.out.println("Reviews of the course "+ course.getReviews());
+		System.out.println("Done");
+
 	}
 
 	private void createCourseAndReviews(AppDAO appDAO) {
