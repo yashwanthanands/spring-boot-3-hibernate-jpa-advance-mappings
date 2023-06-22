@@ -23,8 +23,16 @@ public class CruddemoApplication {
 		return runner -> {
 			System.out.println(" Spring Boot One to Many Unidirectional Implementation");
 			//createCourseAndReviews(appDAO);
-			retrieveCourseWithReviews(appDAO);
+			//retrieveCourseWithReviews(appDAO);
+			deleteCourseAndReviews(appDAO);
 		};
+	}
+
+	private void deleteCourseAndReviews(AppDAO appDAO) {
+		int theCourseId=10;
+		System.out.println("Deleting course id "+theCourseId);
+		appDAO.deleteCourseById(theCourseId);
+		System.out.println("Deleted successfully");
 	}
 
 	private void retrieveCourseWithReviews(AppDAO appDAO) {
