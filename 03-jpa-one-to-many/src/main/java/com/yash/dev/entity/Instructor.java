@@ -41,7 +41,7 @@ public class Instructor {
     @JoinColumn(name = "instructor_detail_id")
     private InstructorDetail instructorDetail;
 
-    @OneToMany(mappedBy = "instructor", fetch = FetchType.EAGER,
+    @OneToMany(mappedBy = "instructor", fetch = FetchType.LAZY,
             cascade = {CascadeType.DETACH,CascadeType.MERGE,
             CascadeType.PERSIST,CascadeType.REFRESH}) // mappedBy value is referred to Instructor property in Course class
     private List<Course> courses;

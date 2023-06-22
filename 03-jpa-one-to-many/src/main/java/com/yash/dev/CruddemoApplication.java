@@ -4,6 +4,7 @@ import com.yash.dev.dao.AppDAO;
 import com.yash.dev.entity.Course;
 import com.yash.dev.entity.Instructor;
 import com.yash.dev.entity.InstructorDetail;
+import java.util.List;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -25,8 +26,24 @@ public class CruddemoApplication {
 			//findInstructorDetail(appDAO);
 			//deleteInstructorDetail(appDAO);
 			//createInstructorWithCourses(appDAO);
-			findInstructorWithCourses(appDAO);
+			//findInstructorWithCourses(appDAO);
+			findCoursesForInstructor(appDAO);
 		};
+	}
+
+	private void findCoursesForInstructor(AppDAO appDAO) {
+
+		int theId=1;
+		System.out.println("Finding instructor id : "+theId);
+
+		Instructor tempInstructor = appDAO.findInstructorById(theId);
+		System.out.println("tempInstructor "+tempInstructor);
+
+		System.out.println("Finding courses for instructor id: "+theId);
+		List<Course> courses = appDAO.findCoursesByInstructorId(theId);
+		tempInstructor.setCourses(courses);
+		System.out.println(" the associated courses: "+tempInstructor.getCourses());
+		System.out.println("Done");
 	}
 
 	private void findInstructorWithCourses(AppDAO appDAO) {
