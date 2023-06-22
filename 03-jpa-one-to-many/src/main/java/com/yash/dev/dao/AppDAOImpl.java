@@ -38,6 +38,14 @@ public class AppDAOImpl implements AppDAO{
     @Transactional
     public void deleteInstructorById(int theId) {
         Instructor tempInstructor = entityManager.find(Instructor.class, theId);
+
+        //break the association logics with the course
+        List<Course> courses=tempInstructor.getCourses();
+
+        for(Course tempCourse : courses) {
+            tempCourse.setInstructor(null);
+        }
+
         entityManager.remove(tempInstructor);
     }
 
@@ -102,4 +110,5 @@ public class AppDAOImpl implements AppDAO{
         Course course=entityManager.find(Course.class,theCourseId);
         return course;
     }
+
 }
