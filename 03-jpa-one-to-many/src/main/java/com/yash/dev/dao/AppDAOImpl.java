@@ -1,9 +1,12 @@
 package com.yash.dev.dao;
 
+import com.yash.dev.entity.Course;
 import com.yash.dev.entity.Instructor;
 import com.yash.dev.entity.InstructorDetail;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
+import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -55,5 +58,17 @@ public class AppDAOImpl implements AppDAO{
         tempInstructorDetail.getInstructor().setInstructorDetail(null);
 
         entityManager.remove(tempInstructorDetail);
+    }
+
+    @Override
+    public List<Course> findCoursesByInstructorId(int theId) {
+        TypedQuery<Course> query =entityManager.createQuery(
+                "from Course where instructor.id = :data",Course.class);
+        query.setParameter("data", theId);
+
+        //execute the query
+        List<Course> courses = query.getResultList();
+
+        return courses;
     }
 }
