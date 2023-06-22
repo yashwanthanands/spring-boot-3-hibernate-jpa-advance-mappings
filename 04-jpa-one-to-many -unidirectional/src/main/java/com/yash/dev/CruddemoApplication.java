@@ -4,6 +4,7 @@ import com.yash.dev.dao.AppDAO;
 import com.yash.dev.entity.Course;
 import com.yash.dev.entity.Instructor;
 import com.yash.dev.entity.InstructorDetail;
+import com.yash.dev.entity.Review;
 import java.util.List;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -21,7 +22,25 @@ public class CruddemoApplication {
 	public CommandLineRunner commandLineRunner(AppDAO appDAO) {
 		return runner -> {
 			System.out.println(" Spring Boot One to Many Unidirectional Implementation");
+			createCourseAndReviews(appDAO);
 		};
+	}
+
+	private void createCourseAndReviews(AppDAO appDAO) {
+		//create a course
+		Course tempCourse1=new Course("GoLang");
+
+		//add some reviews
+		tempCourse1.add(new Review("Great Course.. Loved it..."));
+		tempCourse1.add(new Review("Wonderful Course.. Job well done..."));
+		tempCourse1.add(new Review("Not a good Course.."));
+
+		//save the course
+		System.out.println("Saving the course");
+		System.out.println("Course Details "+tempCourse1);
+		System.out.println("Review Details for the course "+tempCourse1.getReviews());
+		appDAO.save(tempCourse1);
+		System.out.println("Saved successfully");
 	}
 
 	private void deleteCourse(AppDAO appDAO) {
